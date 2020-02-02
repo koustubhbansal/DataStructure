@@ -50,8 +50,8 @@ int main()
 
     vector <int> path1;
     vector <int> path2;
-    getpath(root, 0, path1);
-    getpath(root, 8, path2);
+    getpath(root, 8, path1);
+    getpath(root, 9, path2);
 
 
     int i=0,j=0;
