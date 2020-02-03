@@ -22,7 +22,7 @@ int heightoftree(Node *root)
     {
         return 0;
     }
-    height = 1 + ((heightoftree(root->left)>heightoftree(root->right))?heightoftree(root->left):heightoftree(root->right));
+    height = 1 + max(heightoftree(root->left),heightoftree(root->right));
 
 }
 int main()
