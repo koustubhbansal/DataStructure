@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int diameter=-1;
 class Node
 {
     public:
@@ -17,22 +18,28 @@ Node* getNode(int data)
     return newNode;
 }
 
-int heightoftree(Node *root)
+int heightoftree(Node *root, int &diameter)
 {
     if(root == NULL)
     {
         return 0;
     }
-    return (1 + ((heightoftree(root->left)>heightoftree(root->right))?heightoftree(root->left):heightoftree(root->right)));
+    int lh = heightoftree(root->left, diameter);
+    int rh = heightoftree(root->right, diameter);
+
+    diameter = max(diameter, 1 + lh + rh);
+
+    return (1 + max(lh, rh));
 
 }
-int diameter(Node *root)
+int dia(Node *root)
 {
     if(root == NULL)
     {
         return 0;
     }
-    return max(1 + heightoftree(root -> left) + heightoftree(root -> right),max(diameter(root->left),diameter(root->right)));
+    int height = heightoftree(root, diameter);
+    return diameter;
 }
 
 int main()
@@ -48,7 +55,7 @@ int main()
     root->right->left = getNode(5);
     root->right->right = getNode(6);
 
-    cout<<diameter(root)<<endl;
+    cout<<dia(root)<<endl;
 
 
     return 0;
